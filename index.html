@@ -798,7 +798,7 @@ footer {
 ============================= -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <img src="./logo.png" alt="Taller P&Y Logo">
+    <img src="logo.png" alt="Taller P&Y Logo">
     <div class="nav-logo-text">
       Taller P&Y
       <span>Talabartería · Desde 1993</span>
@@ -835,15 +835,15 @@ footer {
   <div class="sparkle" style="top:10%;left:50%;animation-delay:1.8s"></div>
 
   <!-- Horses -->
-  <img class="horse-left" src="./caballo1.png" alt="Caballo con silla colombiana">
-  <img class="horse-right" src="./caballo2.png" alt="Caballo elegante">
+    <img class="horse-left" src="caballo1.png" alt="Caballo con silla colombiana">
+    <img class="horse-right" src="caballo2.png" alt="Caballo elegante">
 
   <div class="ground-glow"></div>
 
   <!-- Center content -->
   <div class="hero-center">
     <div class="hero-badge">Colombia · Since 1993</div>
-    <img class="hero-logo-img" src="./logo.png" alt="Logo Taller P&Y">
+    <img class="hero-logo-img" src="logo.png"Logo Taller P&Y">
     <h1 class="hero-title">Taller <span>P&Y</span></h1>
     <p class="hero-sub">Talabartería Artesanal Colombiana</p>
     <div class="hero-divider"></div>
@@ -868,7 +868,7 @@ footer {
 <section id="about">
   <div class="about-grid">
     <div class="about-img-wrap">
-      <img src="./image.png" alt="Taller P&Y Logo">
+      <img src="image.png" alt="Taller P&Y Logo">
       <div class="about-badge">+30<br>Años</div>
     </div>
     <div class="about-content">
@@ -889,396 +889,295 @@ footer {
 <!-- ============================
      CATALOG
 ============================= -->
+<style>
+/* ── Estilos adicionales de catálogo ── */
+.product-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s; }
+.product-card:hover .product-img img { transform:scale(1.04); }
+
+/* Carrusel */
+.carousel { position:relative; width:100%; height:100%; overflow:hidden; }
+.carousel-track { display:flex; height:100%; transition:transform .4s ease; }
+.carousel-track img { min-width:100%; height:100%; object-fit:cover; flex-shrink:0; }
+.car-btn {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(10,10,10,.65); border:1px solid rgba(201,168,76,.5);
+  color:var(--gold); width:32px; height:32px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:1rem; z-index:5; transition:all .25s;
+}
+.car-btn:hover { background:var(--gold); color:var(--black); }
+.car-prev { left:10px; }
+.car-next { right:10px; }
+.car-dots { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); display:flex; gap:6px; }
+.car-dot { width:6px; height:6px; border-radius:50%; background:rgba(201,168,76,.4); cursor:pointer; transition:background .25s; }
+.car-dot.on { background:var(--gold); }
+
+/* Includes list */
+.prod-includes { list-style:none; margin:10px 0 14px; }
+.prod-includes li { display:flex; align-items:flex-start; gap:8px; font-size:.78rem; color:var(--text); padding:3px 0; line-height:1.4; }
+.prod-includes li::before { content:'•'; color:var(--gold); flex-shrink:0; }
+
+/* WA button inside card */
+.btn-wa-card {
+  display:flex; align-items:center; gap:8px; justify-content:center;
+  background:#25D366; color:#fff;
+  padding:9px 14px; border:none; border-radius:2px;
+  font-family:inherit; font-size:.72rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+  cursor:pointer; text-decoration:none; transition:all .3s; margin-top:4px; width:100%;
+}
+.btn-wa-card:hover { background:#20bc5a; transform:translateY(-1px); }
+.btn-wa-card svg { flex-shrink:0; }
+</style>
+
 <section id="catalogo" style="max-width:100%;padding:100px 60px;">
   <div class="section-header">
     <div class="section-eyebrow">Nuestros Productos</div>
-    <h2 class="section-title">Catálogo de <span>Sillas</span></h2>
+    <h2 class="section-title">Catálogo de <span>Productos</span></h2>
     <div class="section-line"></div>
   </div>
 
   <div class="catalog-filters">
     <button class="filter-btn active" onclick="filterCatalog('todos',this)">Todos</button>
-    <button class="filter-btn" onclick="filterCatalog('llanera',this)">Silla Llanera</button>
-    <button class="filter-btn" onclick="filterCatalog('paso',this)">Silla de Paso</button>
-    <button class="filter-btn" onclick="filterCatalog('western',this)">Western</button>
-    <button class="filter-btn" onclick="filterCatalog('montura',this)">Montura</button>
-    <button class="filter-btn" onclick="filterCatalog('personalizada',this)">Personalizada</button>
+    <button class="filter-btn" onclick="filterCatalog('tereque',this)">Tereque</button>
+    <button class="filter-btn" onclick="filterCatalog('silla',this)">Sillas XL</button>
+    <button class="filter-btn" onclick="filterCatalog('apero',this)">Aperos</button>
+    <button class="filter-btn" onclick="filterCatalog('accesorio',this)">Accesorios</button>
+    <button class="filter-btn" onclick="filterCatalog('personalizada',this)">Personalizado</button>
   </div>
 
   <div class="catalog-grid" id="catalogGrid">
 
-    <!-- Product 1 -->
-    <div class="product-card" data-cat="llanera" onclick="openModal('prod1')">
+    <!-- PROD 1 – Tereque miel con alforjas -->
+    <div class="product-card" data-cat="tereque" onclick="openModal('prod1')">
       <div class="product-img">
-        <svg class="product-svg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="leather1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#8B4513"/>
-              <stop offset="50%" stop-color="#A0522D"/>
-              <stop offset="100%" stop-color="#654321"/>
-            </linearGradient>
-            <linearGradient id="seat1" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#C4711A"/>
-              <stop offset="100%" stop-color="#8B4513"/>
-            </linearGradient>
-          </defs>
-          <!-- Saddle base -->
-          <ellipse cx="200" cy="200" rx="160" ry="30" fill="#5C3317" opacity=".4"/>
-          <!-- Skirt left -->
-          <path d="M60 180 Q80 220 140 230 Q160 232 170 215 L180 150 Q130 140 80 155 Z" fill="url(#leather1)"/>
-          <!-- Skirt right -->
-          <path d="M340 180 Q320 220 260 230 Q240 232 230 215 L220 150 Q270 140 320 155 Z" fill="url(#leather1)"/>
-          <!-- Seat -->
-          <path d="M120 145 Q200 110 280 145 Q290 165 200 175 Q110 165 120 145Z" fill="url(#seat1)"/>
-          <!-- Pommel -->
-          <ellipse cx="170" cy="140" rx="30" ry="22" fill="#7A3B10"/>
-          <ellipse cx="170" cy="135" rx="22" ry="14" fill="#9B4C1A"/>
-          <!-- Cantle -->
-          <path d="M240 138 Q260 120 270 140 Q265 155 240 158 Z" fill="#7A3B10"/>
-          <!-- Stirrup leather left -->
-          <rect x="115" y="175" width="8" height="50" rx="2" fill="#5C3317" transform="rotate(-5 119 200)"/>
-          <!-- Stirrup left -->
-          <path d="M100 225 Q115 218 128 225 Q128 240 100 240 Z" fill="#8B7355" stroke="#C9A84C" stroke-width="1.5"/>
-          <!-- Stirrup leather right -->
-          <rect x="277" y="175" width="8" height="50" rx="2" fill="#5C3317" transform="rotate(5 281 200)"/>
-          <!-- Stirrup right -->
-          <path d="M272 225 Q285 218 300 225 Q300 240 272 240 Z" fill="#8B7355" stroke="#C9A84C" stroke-width="1.5"/>
-          <!-- Gold decorative details -->
-          <ellipse cx="200" cy="155" rx="18" ry="8" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity=".7"/>
-          <!-- Horn -->
-          <ellipse cx="170" cy="133" rx="10" ry="6" fill="#C9A84C"/>
-          <rect x="167" y="115" width="6" height="20" rx="3" fill="#C9A84C"/>
-          <!-- Decorative stitching -->
-          <path d="M130 160 Q200 148 270 160" fill="none" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4,3" opacity=".6"/>
-          <!-- Floral tooling suggestion -->
-          <circle cx="90" cy="192" r="12" fill="none" stroke="#C9A84C" stroke-width="1" opacity=".4"/>
-          <circle cx="310" cy="192" r="12" fill="none" stroke="#C9A84C" stroke-width="1" opacity=".4"/>
-          <!-- Text label -->
-          <text x="200" y="255" text-anchor="middle" font-family="serif" font-size="10" fill="#C9A84C" opacity=".6">TALLER P&amp;Y · COLOMBIA</text>
-        </svg>
+        <img src="./prod1.png" alt="Tereque Miel con Alforjas" loading="lazy">
         <span class="product-badge-tag badge-best">Más Vendida</span>
       </div>
       <div class="product-body">
-        <div class="product-name">Silla Llanera Clásica</div>
-        <div class="product-desc">Silla tradicional colombiana con talabartería de cuero vacuno curtido al vegetal. Ideal para los llanos orientales.</div>
+        <div class="product-name">Tereque Miel Aceite con Alforjas</div>
+        <div class="product-desc">Tereque 100% elaborado en cuero con herrajes en acero inoxidable. Garantía de 3 años.</div>
+        <ul class="prod-includes">
+          <li>Alforjas</li>
+          <li>Apero de cabeza con rienda</li>
+          <li>Alfombra</li>
+          <li>Pechera</li>
+          <li>Todos los colgantes con sincha, grupa y apretadoras</li>
+        </ul>
         <div class="product-meta">
-          <span class="meta-tag">Cuero Vacuno</span>
-          <span class="meta-tag">Hecho a Mano</span>
-          <span class="meta-tag">Colombia</span>
+          <span class="meta-tag">100% Cuero</span>
+          <span class="meta-tag">Acero Inox.</span>
+          <span class="meta-tag">3 Años Garantía</span>
         </div>
-        <div class="product-footer">
-          <div class="product-price">
-            $1.850.000 COP
-            <small>Envío incluido Colombia</small>
-          </div>
-          <button class="btn-cart">Ver Más</button>
+        <div class="product-footer" style="flex-direction:column;gap:10px;align-items:stretch;">
+          <a class="btn-wa-card" href="https://wa.me/573004609878?text=Hola%20Talabarter%C3%ADa%20P%26Y%20estoy%20interesado%20por%20Tereque%20miel" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Hola, estoy interesado por Tereque Miel
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Product 2 -->
-    <div class="product-card" data-cat="paso" onclick="openModal('prod2')">
+    <!-- PROD 2 – Tereque miel aceite con alforjas v2 -->
+    <div class="product-card" data-cat="tereque" onclick="openModal('prod2')">
       <div class="product-img">
-        <svg class="product-svg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="leather2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#1A1A1A"/>
-              <stop offset="50%" stop-color="#2D2D2D"/>
-              <stop offset="100%" stop-color="#111"/>
-            </linearGradient>
-            <linearGradient id="seat2" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#333"/>
-              <stop offset="100%" stop-color="#1A1A1A"/>
-            </linearGradient>
-          </defs>
-          <ellipse cx="200" cy="200" rx="160" ry="30" fill="#0A0A0A" opacity=".5"/>
-          <path d="M65 178 Q85 218 145 228 Q165 230 175 213 L185 148 Q135 138 85 153 Z" fill="url(#leather2)" stroke="#C9A84C" stroke-width="1" opacity=".8"/>
-          <path d="M335 178 Q315 218 255 228 Q235 230 225 213 L215 148 Q265 138 315 153 Z" fill="url(#leather2)" stroke="#C9A84C" stroke-width="1" opacity=".8"/>
-          <path d="M122 143 Q200 108 278 143 Q288 163 200 173 Q112 163 122 143Z" fill="url(#seat2)" stroke="#C9A84C" stroke-width="1.5"/>
-          <ellipse cx="172" cy="138" rx="32" ry="24" fill="#111" stroke="#C9A84C" stroke-width="1.5"/>
-          <path d="M242 136 Q262 118 272 138 Q267 153 242 156 Z" fill="#111" stroke="#C9A84C" stroke-width="1.5"/>
-          <rect x="117" y="173" width="8" height="50" rx="2" fill="#1A1A1A" transform="rotate(-5 121 198)"/>
-          <path d="M102 223 Q117 216 130 223 Q130 238 102 238 Z" fill="#2D2D2D" stroke="#C9A84C" stroke-width="2"/>
-          <rect x="275" y="173" width="8" height="50" rx="2" fill="#1A1A1A" transform="rotate(5 279 198)"/>
-          <path d="M270 223 Q283 216 298 223 Q298 238 270 238 Z" fill="#2D2D2D" stroke="#C9A84C" stroke-width="2"/>
-          <!-- Gold embroidery details -->
-          <path d="M85 165 Q90 158 100 162 Q95 170 85 165Z" fill="#C9A84C" opacity=".5"/>
-          <path d="M315 165 Q310 158 300 162 Q305 170 315 165Z" fill="#C9A84C" opacity=".5"/>
-          <path d="M132 158 Q200 146 268 158" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="3,3"/>
-          <rect x="167" y="113" width="8" height="22" rx="4" fill="#C9A84C"/>
-          <ellipse cx="171" cy="131" rx="12" ry="7" fill="#C9A84C"/>
-          <!-- Concho decorations -->
-          <circle cx="88" cy="190" r="8" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
-          <circle cx="88" cy="190" r="3" fill="#C9A84C"/>
-          <circle cx="312" cy="190" r="8" fill="none" stroke="#C9A84C" stroke-width="1.5"/>
-          <circle cx="312" cy="190" r="3" fill="#C9A84C"/>
-          <text x="200" y="255" text-anchor="middle" font-family="serif" font-size="10" fill="#C9A84C" opacity=".6">TALLER P&amp;Y · COLOMBIA</text>
-        </svg>
+        <img src="./prod2.png" alt="Tereque Miel con Alforjas" loading="lazy">
         <span class="product-badge-tag">Premium</span>
       </div>
       <div class="product-body">
-        <div class="product-name">Silla de Paso Fino Negra</div>
-        <div class="product-desc">Elegante silla en cuero negro con detalles dorados en bronce. Perfecta para el caballo Paso Fino colombiano.</div>
+        <div class="product-name">Tereque Miel Aceite con Alforjas</div>
+        <div class="product-desc">Tereque 100% elaborado en cuero con herrajes en acero inoxidable. Garantía de 3 años.</div>
+        <ul class="prod-includes">
+          <li>Alforjas</li>
+          <li>Apero de cabeza con rienda</li>
+          <li>Alfombra</li>
+          <li>Pechera</li>
+          <li>Todos los colgantes con sincha, grupa y apretadoras</li>
+        </ul>
         <div class="product-meta">
-          <span class="meta-tag">Cuero Negro</span>
-          <span class="meta-tag">Detalles Dorados</span>
-          <span class="meta-tag">Paso Fino</span>
+          <span class="meta-tag">100% Cuero</span>
+          <span class="meta-tag">Acero Inox.</span>
+          <span class="meta-tag">3 Años Garantía</span>
         </div>
-        <div class="product-footer">
-          <div class="product-price">
-            $2.400.000 COP
-            <small>Envío a todo el país</small>
-          </div>
-          <button class="btn-cart">Ver Más</button>
+        <div class="product-footer" style="flex-direction:column;gap:10px;align-items:stretch;">
+          <a class="btn-wa-card" href="https://wa.me/573004609878?text=Hola%20Talabarter%C3%ADa%20P%26Y%20estoy%20interesado%20por%20Tereque%20miel" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Hola, estoy interesado por Tereque Miel
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Product 3 -->
-    <div class="product-card" data-cat="western" onclick="openModal('prod3')">
+    <!-- PROD 3 – Bueroteka -->
+    <div class="product-card" data-cat="accesorio" onclick="openModal('prod3')">
       <div class="product-img">
-        <svg class="product-svg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="leather3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#D2691E"/>
-              <stop offset="50%" stop-color="#CD853F"/>
-              <stop offset="100%" stop-color="#A0522D"/>
-            </linearGradient>
-            <linearGradient id="seat3" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#DEB887"/>
-              <stop offset="100%" stop-color="#D2691E"/>
-            </linearGradient>
-          </defs>
-          <ellipse cx="200" cy="205" rx="165" ry="32" fill="#6B3010" opacity=".4"/>
-          <!-- Wide western skirt -->
-          <path d="M45 175 Q70 225 145 235 Q170 237 180 212 L190 145 Q120 130 65 150 Z" fill="url(#leather3)"/>
-          <path d="M355 175 Q330 225 255 235 Q230 237 220 212 L210 145 Q280 130 335 150 Z" fill="url(#leather3)"/>
-          <!-- Seat -->
-          <path d="M118 140 Q200 100 282 140 Q295 162 200 172 Q105 162 118 140Z" fill="url(#seat3)"/>
-          <!-- Large western horn -->
-          <ellipse cx="165" cy="135" rx="35" ry="25" fill="#A0522D"/>
-          <rect x="158" y="100" width="14" height="28" rx="5" fill="#A0522D"/>
-          <ellipse cx="165" cy="100" rx="16" ry="8" fill="#CD853F"/>
-          <!-- Back cantle high -->
-          <path d="M238 130 Q268 105 280 135 Q275 158 238 162 Z" fill="#A0522D"/>
-          <!-- Fenders (wider) -->
-          <path d="M100 178 Q108 230 130 240 Q140 242 145 228 L155 175 Q130 168 100 178Z" fill="#8B4513"/>
-          <path d="M300 178 Q292 230 270 240 Q260 242 255 228 L245 175 Q270 168 300 178Z" fill="#8B4513"/>
-          <!-- Stirrups wood style -->
-          <path d="M110 238 Q130 230 148 238 Q148 255 110 255 Z" fill="#8B7355" stroke="#D2691E" stroke-width="2"/>
-          <path d="M252 238 Q272 230 290 238 Q290 255 252 255 Z" fill="#8B7355" stroke="#D2691E" stroke-width="2"/>
-          <!-- Tooling rosettes -->
-          <circle cx="75" cy="188" r="14" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity=".6"/>
-          <circle cx="75" cy="188" r="7" fill="none" stroke="#C9A84C" stroke-width="1" opacity=".4"/>
-          <circle cx="325" cy="188" r="14" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity=".6"/>
-          <circle cx="325" cy="188" r="7" fill="none" stroke="#C9A84C" stroke-width="1" opacity=".4"/>
-          <!-- Star conchos -->
-          <text x="75" y="193" text-anchor="middle" font-size="8" fill="#C9A84C">★</text>
-          <text x="325" y="193" text-anchor="middle" font-size="8" fill="#C9A84C">★</text>
-          <path d="M128 158 Q200 144 272 158" fill="none" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4,3" opacity=".7"/>
-          <text x="200" y="255" text-anchor="middle" font-family="serif" font-size="10" fill="#C9A84C" opacity=".6">TALLER P&amp;Y · COLOMBIA</text>
-        </svg>
-        <span class="product-badge-tag">Western</span>
+        <img src="./prod3.png" alt="Bueroteka de Alta Potencia" loading="lazy">
+        <span class="product-badge-tag" style="background:#1a3a6a;color:#7ab8ff;border:1px solid rgba(122,184,255,.4)">Tecnología</span>
       </div>
       <div class="product-body">
-        <div class="product-name">Montura Western Clásica</div>
-        <div class="product-desc">Montura estilo western con estribo de madera, cuero canela natural y conchas decorativas. Robustez y comodidad.</div>
+        <div class="product-name">Bueroteka de Alta Potencia 🛜</div>
+        <div class="product-desc">Burrotek fabricada artesanalmente, liviana y de alta potencia. Conectividad inalámbrica y carga hasta 10 horas.</div>
         <div class="product-meta">
-          <span class="meta-tag">Cuero Canela</span>
-          <span class="meta-tag">Estribo Madera</span>
-          <span class="meta-tag">Western</span>
+          <span class="meta-tag">Artesanal</span>
+          <span class="meta-tag">Inalámbrica</span>
+          <span class="meta-tag">10h Batería</span>
         </div>
-        <div class="product-footer">
-          <div class="product-price">
-            $2.100.000 COP
-            <small>Envío a todo el país</small>
-          </div>
-          <button class="btn-cart">Ver Más</button>
+        <div class="product-footer" style="flex-direction:column;gap:10px;align-items:stretch;">
+          <a class="btn-wa-card" href="https://wa.me/573004609878?text=Hola%20Talabarter%C3%ADa%20P%26Y%20estoy%20interesado%20por%20la%20Bueroteka%20de%20Alta%20Potencia" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Cotizar Bueroteka
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Product 4 -->
-    <div class="product-card" data-cat="montura" onclick="openModal('prod4')">
-      <div class="product-img">
-        <svg class="product-svg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="leather4" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#5C3A1E"/>
-              <stop offset="50%" stop-color="#7B4A26"/>
-              <stop offset="100%" stop-color="#3E2010"/>
-            </linearGradient>
-            <radialGradient id="seat4" cx="50%" cy="40%" r="60%">
-              <stop offset="0%" stop-color="#8B5E3C"/>
-              <stop offset="100%" stop-color="#5C3A1E"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="200" cy="200" rx="155" ry="28" fill="#2A1A0A" opacity=".5"/>
-          <!-- Montura base skirt -->
-          <path d="M70 172 Q88 212 145 222 Q162 224 172 208 L182 145 Q132 133 80 148 Z" fill="url(#leather4)"/>
-          <path d="M330 172 Q312 212 255 222 Q238 224 228 208 L218 145 Q268 133 320 148 Z" fill="url(#leather4)"/>
-          <!-- Padded seat -->
-          <path d="M124 140 Q200 105 276 140 Q286 162 200 172 Q114 162 124 140Z" fill="url(#seat4)"/>
-          <!-- Pommel rounded -->
-          <ellipse cx="170" cy="138" rx="28" ry="20" fill="#5C3A1E" stroke="#C9A84C" stroke-width="1"/>
-          <ellipse cx="170" cy="134" rx="18" ry="12" fill="#7B4A26"/>
-          <rect x="164" y="114" width="10" height="22" rx="5" fill="#C9A84C"/>
-          <ellipse cx="169" cy="114" rx="8" ry="5" fill="#C9A84C"/>
-          <!-- Cantle -->
-          <path d="M240 133 Q260 115 272 136 Q268 152 240 156 Z" fill="#5C3A1E" stroke="#C9A84C" stroke-width="1"/>
-          <!-- Billets -->
-          <rect x="178" y="168" width="5" height="35" rx="2" fill="#3E2010"/>
-          <rect x="217" y="168" width="5" height="35" rx="2" fill="#3E2010"/>
-          <!-- Stirrup leathers -->
-          <rect x="116" y="172" width="7" height="48" rx="2" fill="#3E2010" transform="rotate(-3 119 196)"/>
-          <rect x="277" y="172" width="7" height="48" rx="2" fill="#3E2010" transform="rotate(3 280 196)"/>
-          <!-- Stirrups iron style -->
-          <path d="M103 218 Q118 211 133 218 Q133 234 103 234Z" fill="#555" stroke="#C9A84C" stroke-width="1.5"/>
-          <path d="M267 218 Q282 211 297 218 Q297 234 267 234Z" fill="#555" stroke="#C9A84C" stroke-width="1.5"/>
-          <!-- Billet buckles -->
-          <rect x="172" y="200" width="16" height="8" rx="1" fill="#888" stroke="#C9A84C" stroke-width=".8"/>
-          <rect x="211" y="200" width="16" height="8" rx="1" fill="#888" stroke="#C9A84C" stroke-width=".8"/>
-          <!-- Tooling leaf pattern -->
-          <path d="M88 168 Q96 160 104 168 Q96 176 88 168Z" fill="none" stroke="#C9A84C" stroke-width="1" opacity=".5"/>
-          <path d="M296 168 Q304 160 312 168 Q304 176 296 168Z" fill="none" stroke="#C9A84C" stroke-width="1" opacity=".5"/>
-          <path d="M130 156 Q200 143 270 156" fill="none" stroke="#C9A84C" stroke-width="1" stroke-dasharray="3,4" opacity=".6"/>
-          <text x="200" y="255" text-anchor="middle" font-family="serif" font-size="10" fill="#C9A84C" opacity=".6">TALLER P&amp;Y · COLOMBIA</text>
-        </svg>
-        <span class="product-badge-tag">Artesanal</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">Montura Artesanal de Alta Costura</div>
-        <div class="product-desc">Montura de cuero curtido al cromo con acabados premium. Diseñada para competencias y exhibiciones ecuestres.</div>
-        <div class="product-meta">
-          <span class="meta-tag">Alta Costura</span>
-          <span class="meta-tag">Competencia</span>
-          <span class="meta-tag">Cuero Premium</span>
-        </div>
-        <div class="product-footer">
-          <div class="product-price">
-            $3.200.000 COP
-            <small>Envío incluido Colombia</small>
+    <!-- PROD 4 – Personalizado (carrusel) -->
+    <div class="product-card" data-cat="personalizada" onclick="void(0)">
+      <div class="product-img" style="cursor:default">
+        <div class="carousel" id="car4" onclick="event.stopPropagation()">
+          <div class="carousel-track" id="car4track">
+            <img src="./prod4.png"  alt="Personalizado 1" loading="lazy">
+            <img src="./prod41.png" alt="Personalizado 2" loading="lazy">
+            <img src="./prod42.png" alt="Personalizado 3" loading="lazy">
+            <img src="./prod43.png" alt="Personalizado 4" loading="lazy">
+            <img src="./prod44.png" alt="Personalizado 5" loading="lazy">
           </div>
-          <button class="btn-cart">Ver Más</button>
+          <button class="car-btn car-prev" onclick="carMove('car4',-1);event.stopPropagation()">&#8249;</button>
+          <button class="car-btn car-next" onclick="carMove('car4',1);event.stopPropagation()">&#8250;</button>
+          <div class="car-dots" id="car4dots"></div>
         </div>
-      </div>
-    </div>
-
-    <!-- Product 5 -->
-    <div class="product-card" data-cat="llanera" onclick="openModal('prod5')">
-      <div class="product-img">
-        <svg class="product-svg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="leather5" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#8B0000"/>
-              <stop offset="50%" stop-color="#A52020"/>
-              <stop offset="100%" stop-color="#6B0000"/>
-            </linearGradient>
-            <linearGradient id="seat5" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#C03030"/>
-              <stop offset="100%" stop-color="#8B0000"/>
-            </linearGradient>
-          </defs>
-          <ellipse cx="200" cy="200" rx="160" ry="30" fill="#400000" opacity=".4"/>
-          <path d="M60 178 Q80 218 142 228 Q162 230 172 213 L182 148 Q132 138 82 153 Z" fill="url(#leather5)"/>
-          <path d="M340 178 Q320 218 258 228 Q238 230 228 213 L218 148 Q268 138 318 153 Z" fill="url(#leather5)"/>
-          <path d="M120 143 Q200 108 280 143 Q290 164 200 174 Q110 164 120 143Z" fill="url(#seat5)"/>
-          <ellipse cx="170" cy="140" rx="30" ry="22" fill="#8B0000" stroke="#C9A84C" stroke-width="1.5"/>
-          <path d="M240 138 Q260 120 270 140 Q265 155 240 158 Z" fill="#8B0000" stroke="#C9A84C" stroke-width="1.5"/>
-          <rect x="165" y="116" width="8" height="24" rx="4" fill="#C9A84C"/>
-          <ellipse cx="169" cy="116" rx="10" ry="6" fill="#C9A84C"/>
-          <rect x="115" y="175" width="8" height="50" rx="2" fill="#6B0000" transform="rotate(-5 119 200)"/>
-          <path d="M100 225 Q115 218 130 225 Q130 240 100 240 Z" fill="#8B4040" stroke="#C9A84C" stroke-width="1.5"/>
-          <rect x="277" y="175" width="8" height="50" rx="2" fill="#6B0000" transform="rotate(5 281 200)"/>
-          <path d="M270 225 Q285 218 300 225 Q300 240 270 240 Z" fill="#8B4040" stroke="#C9A84C" stroke-width="1.5"/>
-          <!-- Gold floral tooling -->
-          <circle cx="88" cy="190" r="16" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity=".6"/>
-          <path d="M80 190 Q88 178 96 190 Q88 202 80 190Z" fill="#C9A84C" opacity=".3"/>
-          <path d="M88 182 Q100 190 88 198 Q76 190 88 182Z" fill="#C9A84C" opacity=".3"/>
-          <circle cx="312" cy="190" r="16" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity=".6"/>
-          <path d="M304 190 Q312 178 320 190 Q312 202 304 190Z" fill="#C9A84C" opacity=".3"/>
-          <path d="M312 182 Q324 190 312 198 Q300 190 312 182Z" fill="#C9A84C" opacity=".3"/>
-          <path d="M130 160 Q200 147 270 160" fill="none" stroke="#C9A84C" stroke-width="1.2" stroke-dasharray="4,3" opacity=".7"/>
-          <text x="200" y="255" text-anchor="middle" font-family="serif" font-size="10" fill="#C9A84C" opacity=".6">TALLER P&amp;Y · COLOMBIA</text>
-        </svg>
-        <span class="product-badge-tag" style="background:#8B0000">Edición Especial</span>
+        <span class="product-badge-tag badge-custom">Personalizado</span>
       </div>
       <div class="product-body">
-        <div class="product-name">Silla Llanera Roja Floreada</div>
-        <div class="product-desc">Silla llanera en cuero rojo tinto con tallado floral a mano. Pieza única de colección para los amantes del llano.</div>
+        <div class="product-name">Productos Personalizados</div>
+        <div class="product-desc">Podemos personalizar cualquier producto dándole un toque auténtico a tu gusto y color.</div>
         <div class="product-meta">
-          <span class="meta-tag">Cuero Rojo</span>
-          <span class="meta-tag">Tallado Floral</span>
-          <span class="meta-tag">Colección</span>
-        </div>
-        <div class="product-footer">
-          <div class="product-price">
-            $2.700.000 COP
-            <small>Envío a todo el país</small>
-          </div>
-          <button class="btn-cart">Ver Más</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Product 6 -->
-    <div class="product-card" data-cat="personalizada" onclick="openModal('prod6')">
-      <div class="product-img">
-        <svg class="product-svg" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="leather6" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#1C2B1A"/>
-              <stop offset="50%" stop-color="#2A3E28"/>
-              <stop offset="100%" stop-color="#152014"/>
-            </linearGradient>
-            <radialGradient id="seat6" cx="50%" cy="40%">
-              <stop offset="0%" stop-color="#3A5235"/>
-              <stop offset="100%" stop-color="#1C2B1A"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="200" cy="200" rx="160" ry="30" fill="#0A100A" opacity=".5"/>
-          <path d="M62 178 Q82 218 142 228 Q162 230 172 213 L182 148 Q132 138 82 153 Z" fill="url(#leather6)"/>
-          <path d="M338 178 Q318 218 258 228 Q238 230 228 213 L218 148 Q268 138 318 153 Z" fill="url(#leather6)"/>
-          <path d="M120 143 Q200 108 280 143 Q290 164 200 174 Q110 164 120 143Z" fill="url(#seat6)"/>
-          <ellipse cx="170" cy="140" rx="30" ry="22" fill="#1C2B1A" stroke="#C9A84C" stroke-width="2"/>
-          <path d="M240 138 Q260 120 270 140 Q265 155 240 158 Z" fill="#1C2B1A" stroke="#C9A84C" stroke-width="2"/>
-          <rect x="165" y="116" width="8" height="24" rx="4" fill="#C9A84C"/>
-          <ellipse cx="169" cy="116" rx="10" ry="6" fill="#C9A84C"/>
-          <rect x="115" y="175" width="8" height="50" rx="2" fill="#1C2B1A" transform="rotate(-5 119 200)"/>
-          <path d="M100 225 Q115 218 130 225 Q130 240 100 240 Z" fill="#2A3E28" stroke="#C9A84C" stroke-width="2"/>
-          <rect x="277" y="175" width="8" height="50" rx="2" fill="#1C2B1A" transform="rotate(5 281 200)"/>
-          <path d="M270 225 Q285 218 300 225 Q300 240 270 240 Z" fill="#2A3E28" stroke="#C9A84C" stroke-width="2"/>
-          <!-- Personalized badge -->
-          <rect x="140" y="138" width="120" height="30" rx="3" fill="rgba(201,168,76,0.15)" stroke="#C9A84C" stroke-width="1"/>
-          <text x="200" y="149" text-anchor="middle" font-family="serif" font-size="8" fill="#C9A84C" letter-spacing="2">TU NOMBRE</text>
-          <text x="200" y="162" text-anchor="middle" font-family="serif" font-size="7" fill="#C9A84C" opacity=".7">PERSONALIZADA</text>
-          <!-- Gold vine decorations -->
-          <path d="M80 175 Q88 162 96 170 Q90 180 82 178" fill="none" stroke="#C9A84C" stroke-width="1.2" opacity=".6"/>
-          <path d="M320 175 Q312 162 304 170 Q310 180 318 178" fill="none" stroke="#C9A84C" stroke-width="1.2" opacity=".6"/>
-          <path d="M130 158 Q200 145 270 158" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="3,3" opacity=".8"/>
-          <text x="200" y="255" text-anchor="middle" font-family="serif" font-size="10" fill="#C9A84C" opacity=".6">TALLER P&amp;Y · COLOMBIA</text>
-        </svg>
-        <span class="product-badge-tag badge-custom">A Tu Medida</span>
-      </div>
-      <div class="product-body">
-        <div class="product-name">Silla Personalizada Verde Esmeralda</div>
-        <div class="product-desc">Silla completamente personalizable: color, grabado, conchas, bordado con tu nombre o escudo. Tu silla, tu identidad.</div>
-        <div class="product-meta">
-          <span class="meta-tag">Personalizable</span>
+          <span class="meta-tag">A Tu Medida</span>
+          <span class="meta-tag">Tu Color</span>
           <span class="meta-tag">Tu Diseño</span>
-          <span class="meta-tag">Exclusiva</span>
         </div>
-        <div class="product-footer">
-          <div class="product-price">
-            Desde $2.500.000
-            <small>Cotización personalizada</small>
+        <div class="product-footer" style="flex-direction:column;gap:10px;align-items:stretch;">
+          <a class="btn-wa-card" href="https://wa.me/573004609878?text=Hola%20Talabarter%C3%ADa%20P%26Y%20estoy%20interesado%20en%20un%20producto%20personalizado" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Cotizar Personalizado
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROD 6 – Pijamas protectoras -->
+    <div class="product-card" data-cat="accesorio" onclick="openModal('prod6')">
+      <div class="product-img">
+        <img src="./prod6.png" alt="Pijamas Protectoras para Caballo" loading="lazy">
+        <span class="product-badge-tag" style="background:#0d3a2e;color:#5BC5A7;border:1px solid rgba(91,197,167,.4)">Todas las Tallas</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Pijamas Protectoras para Caballo</div>
+        <div class="product-desc">Fabricadas en lona de alta calidad con interior en cobija. Excelentes para climas fríos o lugares con extrema vegetación.</div>
+        <div class="product-meta">
+          <span class="meta-tag">Lona Alta Calidad</span>
+          <span class="meta-tag">Interior Cobija</span>
+          <span class="meta-tag">Todas las Tallas</span>
+        </div>
+        <div class="product-footer" style="flex-direction:column;gap:10px;align-items:stretch;">
+          <a class="btn-wa-card" href="https://wa.me/573004609878?text=Hola%20Talabarter%C3%ADa%20P%26Y%20estoy%20interesado%20por%20las%20Pijamas%20Protectoras%20para%20Caballo" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Cotizar Pijamas
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROD 7 – Tereque XL (carrusel) -->
+    <div class="product-card" data-cat="silla" onclick="void(0)">
+      <div class="product-img" style="cursor:default">
+        <div class="carousel" id="car7" onclick="event.stopPropagation()">
+          <div class="carousel-track" id="car7track">
+            <img src="./prod7.png"  alt="Tereque XL 1" loading="lazy">
+            <img src="./prod71.png" alt="Tereque XL 2" loading="lazy">
           </div>
-          <button class="btn-cart">Cotizar</button>
+          <button class="car-btn car-prev" onclick="carMove('car7',-1);event.stopPropagation()">&#8249;</button>
+          <button class="car-btn car-next" onclick="carMove('car7',1);event.stopPropagation()">&#8250;</button>
+          <div class="car-dots" id="car7dots"></div>
+        </div>
+        <span class="product-badge-tag badge-best">🐴 Espectacular</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Tereque XL — Silla Espectacular</div>
+        <div class="product-desc">Fabricación 100% cuero. Herrajes en acero inoxidable. Estribos en aluminio reforzado de amplitud 5 pulgadas.</div>
+        <ul class="prod-includes">
+          <li>Apero de cabeza con rienda</li>
+          <li>Alfombra impermeable</li>
+          <li>Pechera</li>
+          <li>Guardabarros, estribos y sincha</li>
+        </ul>
+        <div class="product-meta">
+          <span class="meta-tag">100% Cuero</span>
+          <span class="meta-tag">Aluminio Reforzado</span>
+          <span class="meta-tag">5 Pulgadas</span>
+        </div>
+        <div class="product-footer" style="flex-direction:column;gap:10px;align-items:stretch;">
+          <a class="btn-wa-card" href="https://wa.me/573004609878?text=Hola%20Talabarter%C3%ADa%20P%26Y%20estoy%20interesado%20por%20el%20Tereque%20XL" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Cotizar Tereque XL
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROD 8 – Aperos tipo Timbiano -->
+    <div class="product-card" data-cat="apero" onclick="openModal('prod8')">
+      <div class="product-img">
+        <img src="./prod8.png" alt="Aperos tipo Timbiano" loading="lazy">
+        <span class="product-badge-tag">Alta Calidad</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Aperos Tipo Timbiano</div>
+        <div class="product-desc">Aperos tipo Timbio de alta calidad, terminados al detalle con combinaciones variadas.</div>
+        <div class="product-meta">
+          <span class="meta-tag">Alta Calidad</span>
+          <span class="meta-tag">Al Detalle</span>
+          <span class="meta-tag">Variados</span>
+        </div>
+        <div class="product-footer" style="flex-direction:column;gap:10px;align-items:stretch;">
+          <a class="btn-wa-card" href="https://wa.me/573004609878?text=Hola%20Talabarter%C3%ADa%20P%26Y%20estoy%20interesado%20por%20los%20Aperos%20Tipo%20Timbiano" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Cotizar Aperos Timbiano
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROD 9 – Chaparral Cuadro aceite -->
+    <div class="product-card" data-cat="silla" onclick="openModal('prod9')">
+      <div class="product-img">
+        <img src="./prod9.png" alt="Chaparral Cuadro Aceite" loading="lazy">
+        <span class="product-badge-tag" style="background:#2a1a00;color:#E8C96A;border:1px solid rgba(232,201,106,.4)">Color Único</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Chaparral Cuadro Aceite</div>
+        <div class="product-desc">Fabricación 100% cuero. Herrajes en acero inoxidable. Estribos en aluminio reforzado de amplitud 5 pulgadas.</div>
+        <ul class="prod-includes">
+          <li>Apero de cabeza con rienda</li>
+          <li>Alfombra impermeable</li>
+          <li>Pechera</li>
+          <li>Guardabarros, estribos y sincha</li>
+        </ul>
+        <div class="product-meta">
+          <span class="meta-tag">100% Cuero</span>
+          <span class="meta-tag">Color Único</span>
+          <span class="meta-tag">Acero Inox.</span>
+        </div>
+        <div class="product-footer" style="flex-direction:column;gap:10px;align-items:stretch;">
+          <a class="btn-wa-card" href="https://wa.me/573004609878?text=Hola%20Talabarter%C3%ADa%20P%26Y%20estoy%20interesado%20por%20el%20Chaparral%20Cuadro%20Aceite" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Cotizar Chaparral
+          </a>
         </div>
       </div>
     </div>
 
   </div><!-- end catalog-grid -->
+</section>
 </section>
 
 <!-- ============================
@@ -1552,7 +1451,7 @@ footer {
     <div>
       <div style="background:var(--dark);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:36px;">
         <div style="text-align:center;margin-bottom:24px;">
-          <img src="./logo.png" alt="Logo" style="width:90px;height:90px;border-radius:50%;border:2px solid var(--gold);">
+          <img src="/mnt/user-data/uploads/1778188099645_image.png" alt="Logo" style="width:90px;height:90px;border-radius:50%;border:2px solid var(--gold);">
         </div>
         <div style="font-family:'Cinzel',serif;font-size:.9rem;color:var(--gold-light);text-align:center;margin-bottom:8px;">Taller de Talabartería P&Y</div>
         <div style="color:var(--text);font-size:.85rem;text-align:center;line-height:1.8;">
@@ -1578,7 +1477,7 @@ footer {
   <div class="footer-inner">
     <div class="footer-brand">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;">
-        <img src="./logo.png" alt="Logo" style="width:54px;height:54px;border-radius:50%;border:2px solid var(--gold);">
+        <img src="/mnt/user-data/uploads/1778188099645_image.png" alt="Logo" style="width:54px;height:54px;border-radius:50%;border:2px solid var(--gold);">
         <div style="font-family:'Cinzel Decorative',serif;color:var(--gold-light);font-size:1rem;">Taller P&Y<br><span style="font-family:'Cinzel',serif;font-size:.65rem;color:var(--text);letter-spacing:2px;font-weight:400;">TALABARTERÍA · DESDE 1993</span></div>
       </div>
       <p>Más de 30 años creando sillas de caballo artesanales con el mejor cuero colombiano. Tradición, calidad y pasión en cada costura.</p>
@@ -1830,6 +1729,40 @@ document.querySelectorAll('.product-card, .testimonial-card, .process-step, .pay
   el.style.transform = 'translateY(30px)';
   el.style.transition = 'opacity .6s ease, transform .6s ease';
   observer.observe(el);
+});
+</script>
+
+<script>
+/* CAROUSELS */
+const carState = {};
+function carInit(id, total) {
+  carState[id] = { idx: 0, total };
+  const dotsEl = document.getElementById(id + 'dots');
+  if (!dotsEl) return;
+  dotsEl.innerHTML = '';
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'car-dot' + (i === 0 ? ' on' : '');
+    d.onclick = () => carGo(id, i);
+    dotsEl.appendChild(d);
+  }
+}
+function carGo(id, idx) {
+  const st = carState[id];
+  if (!st) return;
+  st.idx = (idx + st.total) % st.total;
+  const track = document.getElementById(id + 'track');
+  if (track) track.style.transform = 'translateX(-' + (st.idx * 100) + '%)';
+  const dots = document.querySelectorAll('#' + id + 'dots .car-dot');
+  dots.forEach((d, i) => d.classList.toggle('on', i === st.idx));
+}
+function carMove(id, dir) {
+  const st = carState[id];
+  if (st) carGo(id, st.idx + dir);
+}
+document.addEventListener('DOMContentLoaded', () => {
+  carInit('car4', 5);
+  carInit('car7', 2);
 });
 </script>
 </body>
